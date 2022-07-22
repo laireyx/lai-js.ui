@@ -1,12 +1,12 @@
 import { render } from "preact";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./components/home/home";
 import { Quest } from "./components/quest/quest";
 import { QuestList } from "./components/quest/questlist";
 import "./index.css";
 
 render(
-  <BrowserRouter>
+  <HashRouter>
     <Routes>
       <Route index element={<Home />} />
       <Route path="quest">
@@ -15,6 +15,6 @@ render(
       </Route>
       <Route path="*" element={<>Not Found</>} />
     </Routes>
-  </BrowserRouter>,
+  </HashRouter>,
   document.getElementById("app")
 );
