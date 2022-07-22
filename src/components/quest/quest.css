@@ -1,0 +1,12 @@
+.quest {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1em;
+}
+
+.questContent {
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  padding: 1em 0.5em;
+}
