@@ -6,7 +6,7 @@ function useQuestList(page) {
   const [questList, setQuestList] = useState([]);
 
   useEffect(() => {
-    fetch(`http://js.laireyx.net/quest/list?p=${page}`, {
+    fetch(`http://api.laireyx.net/quest/list?p=${page}`, {
       signal: abortController.signal,
     })
       .then((resp) => resp.json())

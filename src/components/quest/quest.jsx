@@ -10,7 +10,7 @@ function useQuest(questId) {
   const [quest, setQuest] = useState({});
 
   useEffect(() => {
-    fetch(`http://js.laireyx.net/quest/${questId}`, {
+    fetch(`http://api.laireyx.net/quest/${questId}`, {
       signal: abortController.signal,
     })
       .then((resp) => resp.json())
@@ -42,7 +42,7 @@ export function Quest() {
       <Code code={code} setCode={setCode} placeholder="Loading problem..." />
       <button
         onClick={() => {
-          fetch(`http://js.laireyx.net/quest/submit/${questId}`, {
+          fetch(`http://api.laireyx.net/quest/submit/${questId}`, {
             method: "POST",
             signal: abortController.signal,
             headers: { "Content-Type": "application/json" },
