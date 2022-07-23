@@ -4,12 +4,11 @@ import { useEffect, useState } from "preact/hooks";
 
 import "./quest.css";
 
-const abortController = new AbortController();
-
 function useQuest(questId) {
   const [quest, setQuest] = useState({});
 
   useEffect(() => {
+    const abortController = new AbortController();
     fetch(`http://api.laireyx.net/quest/${questId}`, {
       signal: abortController.signal,
     })
@@ -36,10 +35,16 @@ export function Quest() {
   return (
     <div className="quest">
       <div>
-        <h1>{quest.title}</h1>
-        <p className="questContent">{quest.content}</p>
+        <h1>{quest.title || "Epic Quest"}</h1>
+        <p className="questContent">
+          {quest.content || "Stay awhile and listen"}
+        </p>
       </div>
-      <Code code={code} setCode={setCode} placeholder="Loading problem..." />
+      <Code
+        code={code}
+        setCode={setCode}
+        placeholder="console.log('Loading problem...');"
+      />
       <button
         onClick={() => {
           fetch(`http://api.laireyx.net/quest/submit/${questId}`, {

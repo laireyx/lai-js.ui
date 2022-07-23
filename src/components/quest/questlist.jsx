@@ -1,11 +1,11 @@
 import { useEffect, useState } from "preact/hooks";
-
-const abortController = new AbortController();
+import { Link } from "react-router-dom";
 
 function useQuestList(page) {
   const [questList, setQuestList] = useState([]);
 
   useEffect(() => {
+    const abortController = new AbortController();
     fetch(`http://api.laireyx.net/quest/list?p=${page}`, {
       signal: abortController.signal,
     })
@@ -23,12 +23,23 @@ function useQuestList(page) {
 export function QuestList() {
   const questList = useQuestList();
   return (
-    <>
-      {questList.map((quest) => (
-        <>
-          {quest.qid} : {quest.title}
-        </>
-      ))}
-    </>
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>title</th>
+        </tr>
+      </thead>
+      <tbody>
+        {questList.map((quest) => (
+          <tr key={quest.qid}>
+            <td>{quest.qid}</td>
+            <td>
+              <Link to={`../${quest.qid}`}>{quest.title}</Link>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }
