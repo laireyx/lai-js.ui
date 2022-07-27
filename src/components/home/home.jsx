@@ -4,7 +4,10 @@ import "./home.css";
 export function Home() {
   return (
     <>
-      <Link to="/quest/list">Quest List</Link>
+      <h1>{location.host}</h1>
+      <Link to="/quest/list">
+        <button>Quest List</button>
+      </Link>
     </>
   );
 }

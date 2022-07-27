@@ -1,0 +1,24 @@
+table.questList {
+  margin: auto;
+}
+
+table.questList th,
+table.questList td {
+  padding: 0 1em;
+}
+
+table.questList th {
+  background-color: lightgrey;
+}
+
+table.questList tr {
+  transition: 0.5s;
+}
+table.questList tr:hover {
+  background-color: #cdcdff;
+  transition: 0.1s;
+}
+
+table.questList td.questTitle {
+  min-width: 10em;
+}

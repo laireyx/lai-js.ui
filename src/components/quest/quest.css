@@ -3,10 +3,19 @@
   flex-direction: column;
 
   gap: 1em;
+
+  max-height: 100vh;
+
+  transition: 500ms;
 }
 
 .questContent {
   border-top: 1px solid;
   border-bottom: 1px solid;
   padding: 1em 0.5em;
+}
+
+.codeEditor {
+  max-height: 15em;
+  overflow: auto;
 }

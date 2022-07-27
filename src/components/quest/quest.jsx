@@ -34,22 +34,23 @@ export function Quest() {
 
   return (
     <div className="quest">
-      <div>
+      <div className="questInfo">
         <h1>{quest.title || "Epic Quest"}</h1>
         <p className="questContent">
           {quest.content || "Stay awhile and listen"}
         </p>
       </div>
-      <Code
-        code={code}
-        setCode={setCode}
-        placeholder="console.log('Loading problem...');"
-      />
+      <div className="codeEditor">
+        <Code
+          code={code}
+          setCode={setCode}
+          placeholder="console.log('Loading problem...');"
+        />
+      </div>
       <button
         onClick={() => {
           fetch(`http://api.laireyx.net/quest/submit/${questId}`, {
             method: "POST",
-            signal: abortController.signal,
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ code }),
           })

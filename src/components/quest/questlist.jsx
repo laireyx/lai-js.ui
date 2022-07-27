@@ -1,8 +1,11 @@
 import { useEffect, useState } from "preact/hooks";
 import { Link } from "react-router-dom";
+import "./questlist.css";
 
 function useQuestList(page) {
-  const [questList, setQuestList] = useState([]);
+  const [questList, setQuestList] = useState([
+    { qid: 0, title: "Now loading..." },
+  ]);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -23,23 +26,30 @@ function useQuestList(page) {
 export function QuestList() {
   const questList = useQuestList();
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>id</th>
-          <th>title</th>
-        </tr>
-      </thead>
-      <tbody>
-        {questList.map((quest) => (
-          <tr key={quest.qid}>
-            <td>{quest.qid}</td>
-            <td>
-              <Link to={`../${quest.qid}`}>{quest.title}</Link>
-            </td>
+    <>
+      <h1>Quest List</h1>
+      <table className="questList">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>title</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {questList.map((quest) => (
+            <tr key={quest.qid}>
+              <td>{quest.qid}</td>
+              <td className="questTitle">
+                {quest.qid > 0 ? (
+                  <Link to={`../${quest.qid}`}>{quest.title}</Link>
+                ) : (
+                  quest.title
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 }
